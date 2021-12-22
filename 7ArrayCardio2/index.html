@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Cardio2</title>
+</head>
+<body>
+    <script>
+        const people=[
+            {name: 'Albert',year:1879},
+            {name: 'Isaac',year:1643},
+            {name: 'Galileo',year:1564},
+            {name: 'Marie',year:1867},
+            {name: 'Johannes',year:1571},
+            {name: 'Nicolaus',year:1473},
+            {name: 'Max',year:1858},
+        ];
+        const comments =[
+            {text:"Love this!", id: 523423},
+            {text:"super good",id:823423},
+            {text:"You are the best",id:2039842},
+            {text:"Biryani is my fav dish ever",id:123523},
+            {text:"Nice Nice Nice! ",id:542328},
+            
+        ];
+
+        //Array.prototype.some()
+
+        const isAdult=people.some(person =>((new Date()).
+        getFullYear())-person.year >=19);
+        console.log({isAdult});
+
+        //Array.prototype.every()
+        const allAdults=people.every(person =>((new Date()).
+        getFullYear())-person.year >=19);
+        console.log({allAdults});
+
+        //Array.prototype.find()
+        const fifteen=people.find(person=> (person.year < 1500 && person.year <= 1600));
+        console.table(fifteen);
+
+        //find the comments with the id is 823423
+        const comment = comments.find(comment => comment.id === 823423);
+        console.log(comment);
+
+        //Array.prototype.findindex()
+        const index= comments.findIndex(comment=>comment.id===823423);
+        console.log(index);
+        comments.splice(index,1);
+
+        const newComments=[
+            ...comments.slice(0,index),
+            ...comments.slice(index+1)
+        ];
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Check Box</title>
+</head>
+
+<body>
+    <style>
+        html {
+            font-family: sans-serif;
+            background: #4054FF;
+        }
+
+        .inbox {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #F1F1F1;
+        }
+
+        input[type="checkbox"] {
+            margin: 20px;
+        }
+
+        p {
+            margin: 0;
+            padding: 20px;
+            flex: 1;
+            font-family: 'helvetica neue';
+            font-size: 20px;
+            font-weight: 200;
+            border-left: 1px solid #D1E2FF;
+        }
+
+        .item:last-child {
+            border-bottom: 0;
+        }
+
+        input:checked+p {
+            background: #F9F9F9;
+            text-decoration: line-through;
+        }
+        h1{
+            text-align: center;
+            color: #D1E2FF;
+            font-family: 'helvetica neue';
+            
+        }
+    </style>
+            <h1>Multiple Check Boxes</h1>
+                <div class="inbox">
+                    <div class="item">
+                        <input type="checkbox">
+                        <p>Welcome to checkbox..!!</p>
+                    </div>
+                    <div class="item">
+                        <input type="checkbox">
+                        <p>Have fun learning JS!</p>
+                    </div>
+                    <div class="item">
+                        <input type="checkbox">
+                        <p> Have your account on Instagram </p>
+                    </div>
+                    <div class="item">
+                        <input type="checkbox">
+                        <p>Check form last to first</p>
+                    </div>
+                </div>
+
+    <script>
+let lastChecked;
+        const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');//All checkbox here
+
+        function handleCheck(e) {
+            let userChecksFlag = false;
+            let userUnchecksFlag = false;
+            if (e.shiftKey && this.checked) {
+                                                    //loop starts
+                checkboxes.forEach(checkbox => {
+                    if (checkbox === this || checkbox === lastChecked) {
+
+                        userChecksFlag = !userChecksFlag;
+                        if (userChecksFlag) {
+                            console.log("Start to check the elements in the middle!")
+                            console.log(checkbox)
+
+                        } else {
+                            console.log(checkbox)
+                            console.log("End here!")
+                        }
+
+                    } else {
+                        console.log(checkbox)
+                    }
+
+                    if (userChecksFlag) {
+                        checkbox.checked = true; 
+                    }
+                })
+            }
+
+            if (e.shiftKey && !this.checked) {
+                checkboxes.forEach(checkbox => {
+                    if (checkbox === this || checkbox === lastChecked) {
+                        userUnchecksFlag = !userUnchecksFlag;
+                    }
+                    if (userUnchecksFlag) {
+                        checkbox.checked = false;
+                    }
+                })
+                lastChecked.checked = false;
+            }
+            lastChecked = this;
+        }
+
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
+    </script>
+</body>
+
+</html>
